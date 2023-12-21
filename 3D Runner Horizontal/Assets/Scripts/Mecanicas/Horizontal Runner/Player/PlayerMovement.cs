@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _lanePositions[Lane.Middle] =  2.19f;
-        _lanePositions[Lane.Left]   = -5.26f;
-        _lanePositions[Lane.Right]  =  8.84f;
+        _lanePositions[Lane.Middle] =  0f;
+        _lanePositions[Lane.Left]   = -6.65f;
+        _lanePositions[Lane.Right]  =  6.65f;
     
 
     }
@@ -51,8 +51,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float GetPlayerInLanePosition(float velocity)
     {
-        if(_currentPlayerPosition.x != _lanePositions[_currentLane]) { 
-            if(velocity <= 16)
+        if(_currentPlayerPosition.x != _lanePositions[_currentLane]) {
+            if (velocity <= 8)
+                _timeToChangeLane += 8 * Time.deltaTime;
+            else if (velocity <= 16)
                 _timeToChangeLane += velocity *  Time.deltaTime;
             else
                 _timeToChangeLane += 16 * Time.deltaTime;
